@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class WeightItem extends StatelessWidget {
+  final double difference;
+  final double weight;
+  final DateTime dateTime;
+
+  const WeightItem({
+    @required this.dateTime,
+    @required this.weight,
+    @required this.difference,
+  })  : assert(dateTime != null),
+        assert(weight != null),
+        assert(difference != null);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Row(
-//        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           // datetime display
           Expanded(
@@ -14,13 +26,13 @@ class WeightItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'July 22, 2017',
+                  DateFormat("MMMM dd, yyyy").format(dateTime),
                   style: TextStyle(
                     fontSize: 14,
                   ),
                 ),
                 Text(
-                  'Saturday',
+                  DateFormat.EEEE().format(dateTime),
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 12,
@@ -32,7 +44,7 @@ class WeightItem extends StatelessWidget {
           // weight display
           Expanded(
             child: Text(
-              '90.0',
+              weight.toString(),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30,
@@ -42,12 +54,11 @@ class WeightItem extends StatelessWidget {
           // difference display
           Expanded(
             child: Text(
-              '-8.0',
+              difference.toString(),
               textAlign: TextAlign.right,
               style: TextStyle(
                 fontSize: 24,
               ),
-
             ),
           ),
         ],

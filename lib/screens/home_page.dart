@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView.builder(
           itemCount: myList.length,
           itemBuilder: (BuildContext ctxt, int index) {
-            return WeightItem();
+            return WeightItem( dateTime: DateTime.now(), weight: 136.6, difference: 0);
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
