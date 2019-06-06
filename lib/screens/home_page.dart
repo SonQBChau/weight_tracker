@@ -22,11 +22,10 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.green,
       ),
       body: ListView.builder(
-        itemCount: myList.length,
+          itemCount: myList.length,
           itemBuilder: (BuildContext ctxt, int index) {
-            return  Text(myList[index]);
-          }
-      ),
+            return Text(myList[index]);
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _handleAddButton();
@@ -36,6 +35,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-
 }
