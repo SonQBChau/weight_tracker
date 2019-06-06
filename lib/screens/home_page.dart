@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weight_tracker/widgets/WeightItem.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView.builder(
           itemCount: myList.length,
           itemBuilder: (BuildContext ctxt, int index) {
-            return Text(myList[index]);
+            return WeightItem();
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
