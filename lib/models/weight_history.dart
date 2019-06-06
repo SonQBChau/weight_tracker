@@ -1,5 +1,7 @@
 
-
+/*
+WEIGHT HISTORY CLASS
+ */
 class WeightHistory{
   double weight;
   DateTime dateTime;

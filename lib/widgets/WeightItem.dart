@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+/*
+  CONTAIN ROW WIDGET TO DISPLAY EACH ITEM ON HOMEPAGE
+*/
 class WeightItem extends StatelessWidget {
   final double difference;
   final double weight;
