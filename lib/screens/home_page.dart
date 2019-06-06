@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
     double lastWeight = weightList.length > 0 ? weightList.last.weight : 0;
 
     setState(() {
+      //create new weight item
       WeightHistory weightEntry = WeightHistory (dateTime: getRandomDate(),
           weight: getRandomDouble());
       WeightItem item = WeightItem ( dateTime: weightEntry.dateTime,
