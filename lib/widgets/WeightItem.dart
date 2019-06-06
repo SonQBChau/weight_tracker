@@ -6,19 +6,50 @@ class WeightItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           // datetime display
-          Column(
-            children: <Widget>[
-              Text('July 22, 2017'),
-              Text('Saturday'),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'July 22, 2017',
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+                Text(
+                  'Saturday',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
           ),
           // weight display
-          Text('90'),
+          Expanded(
+            child: Text(
+              '90.0',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+              ),
+            ),
+          ),
           // difference display
-          Text('-8.0'),
+          Expanded(
+            child: Text(
+              '-8.0',
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontSize: 24,
+              ),
+
+            ),
+          ),
         ],
       ),
     );
