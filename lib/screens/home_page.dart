@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:weight_tracker/models/weight_history.dart';
+import 'package:weight_tracker/screens/add_entry_dialog.dart';
 import 'package:weight_tracker/utils/random_generator.dart';
 import 'package:weight_tracker/widgets/WeightItem.dart';
 
@@ -28,14 +29,19 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-
+  void _openAddEntryDialog(){
+    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+      return AddEntryDialog();
+    },
+      fullscreenDialog: true,
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Weight Tracker'),
-        backgroundColor: Colors.green,
       ),
       body: ListView.builder(
           itemCount: weightList.length,
@@ -44,10 +50,11 @@ class _HomePageState extends State<HomePage> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _handleAddButton();
+//          _handleAddButton();
+        _openAddEntryDialog();
+
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.green,
       ),
     );
   }
