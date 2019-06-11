@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:weight_tracker/models/weight_item.dart';
 
 /*
   CONTAIN ROW WIDGET TO DISPLAY EACH ITEM ON HOMEPAGE
 */
-class WeightItem extends StatelessWidget {
-  final double difference;
-  final double weight;
-  final DateTime dateTime;
+class WeightWidget extends StatelessWidget {
+  final String difference;
+  final WeightItem weightItem;
 
-  const WeightItem({
-    @required this.dateTime,
-    @required this.weight,
+  const WeightWidget({
+    @required this.weightItem,
     @required this.difference,
-  })  : assert(dateTime != null),
-        assert(weight != null),
+  })  : assert(weightItem != null),
         assert(difference != null);
 
   @override
@@ -29,13 +27,13 @@ class WeightItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  DateFormat("MMMM dd, yyyy").format(dateTime),
+                  DateFormat("MMMM dd, yyyy").format(weightItem.dateTime),
                   style: TextStyle(
                     fontSize: 14,
                   ),
                 ),
                 Text(
-                  DateFormat.EEEE().format(dateTime),
+                  DateFormat.EEEE().format(weightItem.dateTime),
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 12,
@@ -47,7 +45,7 @@ class WeightItem extends StatelessWidget {
           // weight display
           Expanded(
             child: Text(
-              weight.toString(),
+              weightItem.weight.toString(),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30,
@@ -57,7 +55,7 @@ class WeightItem extends StatelessWidget {
           // difference display
           Expanded(
             child: Text(
-              difference.toString(),
+              difference,
               textAlign: TextAlign.right,
               style: TextStyle(
                 fontSize: 24,

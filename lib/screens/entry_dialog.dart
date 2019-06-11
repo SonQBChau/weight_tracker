@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:weight_tracker/models/weight_history.dart';
+import 'package:weight_tracker/models/weight_item.dart';
 import 'package:weight_tracker/utils/random_generator.dart';
 import 'package:weight_tracker/widgets/date_time_item.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
-class AddEntryDialog extends StatefulWidget {
+class EntryDialog extends StatefulWidget {
+  DateTime dateTime;
+  double weight;
+  String note;
+  EntryDialog({
+    this.weight,
+    this.dateTime,
+    this.note,
+});
 
   // create a random Weight object and pop it back to home page
   @override
-  _AddEntryDialogState createState() => _AddEntryDialogState();
+  _EntryDialogState createState() => _EntryDialogState();
 }
 
-class _AddEntryDialogState extends State<AddEntryDialog> {
-  DateTime _dateTime = new DateTime.now();
+class _EntryDialogState extends State<EntryDialog> {
+  DateTime _dateTime =  DateTime.now();
   double _weight = 120.2;
   String _note = '';
   TextEditingController _textEditingController;
@@ -21,7 +29,7 @@ class _AddEntryDialogState extends State<AddEntryDialog> {
   void _handleSaveButton(context) {
     Navigator.of(context).pop(
       // set random weight history
-        WeightHistory (dateTime: getRandomDate(), weight: getRandomDouble())
+        WeightItem (dateTime: _dateTime, weight: _weight, note: _note)
     );
   }
 
