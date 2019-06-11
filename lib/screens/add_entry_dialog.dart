@@ -14,6 +14,8 @@ class AddEntryDialog extends StatefulWidget {
 class _AddEntryDialogState extends State<AddEntryDialog> {
   DateTime _dateTime = new DateTime.now();
   double _weight = 120.2;
+  String _note = '';
+  TextEditingController _textEditingController;
 
 
   void _handleSaveButton(context) {
@@ -43,14 +45,18 @@ class _AddEntryDialogState extends State<AddEntryDialog> {
         hideHeader: true,
         title: new Text("Please Select"),
         onConfirm: (Picker picker, List value) {
-          print(value.toString());
-          print(picker.getSelectedValues());
           setState(() {
             double value = picker.getSelectedValues()[0] + picker.getSelectedValues()[1]/10;
             _weight = value;
           });
         }
     ).showDialog(context);
+  }
+
+  @override
+  void initState() {
+    _textEditingController =  TextEditingController(text: _note);
+    super.initState();
   }
 
   @override
@@ -78,6 +84,16 @@ class _AddEntryDialogState extends State<AddEntryDialog> {
             leading:  Icon(Icons.accessibility, color: Colors.grey[500]),
             title: Text('$_weight lbs'),
             onTap: () { showPickerNumber(context); },
+          ),
+          ListTile(
+            leading:  Icon(Icons.speaker_notes, color: Colors.grey[500]),
+            title:  TextField(
+              decoration:  InputDecoration(
+                hintText: 'Optional note',
+              ),
+              controller: _textEditingController,
+              onChanged: (value) => _note = value,
+            ),
           ),
         ],
       ),
