@@ -11,30 +11,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<WeightItem> weightList = [];
+  List<WeightItem> _weightList = [];
 
-  void _handleAddButton() {
-    double lastWeight = weightList.length > 0 ? weightList.last.weight : 0;
 
+  void _addToWeightList(WeightHistory weightEntry) {
+    // first item will have 0 weight difference
+    double lastWeight = _weightList.length > 0 ? _weightList.last.weight : 0;
+    // create weight item with difference from the previous entry
     setState(() {
-      //create new weight item
-      WeightHistory weightEntry = WeightHistory (dateTime: getRandomDate(),
-          weight: getRandomDouble());
       WeightItem item = WeightItem ( dateTime: weightEntry.dateTime,
         weight: weightEntry.weight,
-        difference: weightList.isNotEmpty ? weightEntry.weight - lastWeight : 0);
-
+        difference: _weightList.isNotEmpty ? weightEntry.weight - lastWeight : 0);
       // add it to the list
-      weightList.add(item);
+      _weightList.add(item);
     });
   }
 
-  void _openAddEntryDialog(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+  // open new dialog to create weight object and get the result back
+  void _openAddEntryDialog() async{
+    WeightHistory newItem = await Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
       return AddEntryDialog();
     },
       fullscreenDialog: true,
     ));
+
+    if(newItem != null){
+      _addToWeightList(newItem);
+    }
   }
 
   @override
@@ -44,13 +47,12 @@ class _HomePageState extends State<HomePage> {
         title: Text('Weight Tracker'),
       ),
       body: ListView.builder(
-          itemCount: weightList.length,
+          itemCount: _weightList.length,
           itemBuilder: (BuildContext ctxt, int index) {
-            return weightList[index];
+            return _weightList[index];
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-//          _handleAddButton();
         _openAddEntryDialog();
 
         },
