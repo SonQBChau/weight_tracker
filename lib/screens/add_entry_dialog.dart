@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:weight_tracker/models/weight_history.dart';
 import 'package:weight_tracker/utils/random_generator.dart';
+import 'package:weight_tracker/widgets/date_time_item.dart';
 
-class AddEntryDialog extends StatelessWidget {
+class AddEntryDialog extends StatefulWidget {
 
   // create a random Weight object and pop it back to home page
+  @override
+  _AddEntryDialogState createState() => _AddEntryDialogState();
+}
+
+class _AddEntryDialogState extends State<AddEntryDialog> {
+  DateTime _dateTime = new DateTime.now();
+
+
   void _handleSaveButton(context) {
     Navigator.of(context).pop(
       // set random weight history
@@ -24,11 +33,15 @@ class AddEntryDialog extends StatelessWidget {
           ),
         ],
       ),
-      body: Text('Foo'),
+      body: ListTile(
+        leading: new Icon(Icons.today, color: Colors.grey[500]),
+        title: new DateTimeItem(
+          dateTime: _dateTime,
+          onChanged: (dateTime) => setState(() => _dateTime = dateTime),
+        ),
+      ),
     );
   }
-
-
 }
 
 
