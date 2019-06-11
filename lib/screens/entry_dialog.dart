@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weight_tracker/models/weight_item.dart';
-import 'package:weight_tracker/utils/random_generator.dart';
 import 'package:weight_tracker/widgets/date_time_item.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
@@ -20,9 +19,9 @@ class EntryDialog extends StatefulWidget {
 }
 
 class _EntryDialogState extends State<EntryDialog> {
-  DateTime _dateTime =  DateTime.now();
-  double _weight = 120.2;
-  String _note = '';
+  DateTime _dateTime;
+  double _weight;
+  String _note ;
   TextEditingController _textEditingController;
 
 
@@ -64,6 +63,9 @@ class _EntryDialogState extends State<EntryDialog> {
   @override
   void initState() {
     _textEditingController =  TextEditingController(text: _note);
+    _note = widget.note != '' ? widget.note : '';
+    _dateTime = widget.dateTime != null ? widget.dateTime : DateTime.now();
+    _weight = widget.weight != null ? widget.weight : 102.3;
     super.initState();
   }
 

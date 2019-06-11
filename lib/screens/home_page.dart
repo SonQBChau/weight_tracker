@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   // open new dialog to create weight object and get the result back
-  void _openAddEntryDialog() async{
+  void _addNewEntry() async{
     WeightItem newWeightItem = await Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
       return EntryDialog();
     },
@@ -38,19 +38,20 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-//  // edit the existing item
-//  _editEntry(WeightWidget item) async{
-//    WeightItem editItem = await Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-//      return EntryDialog(dateTime: item.dateTime, weight: item.weight, note: item.note,);
-//    },
-//      fullscreenDialog: true,
-//    ));
-//
-//    if(editItem != null){
-////      _addToWeightList(newItem);
-//    // modify it
-//    }
-//  }
+  // edit the existing item
+  _editEntry(WeightWidget item) async{
+    WeightItem editItem = await Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+      return EntryDialog(dateTime: item.weightItem.dateTime, weight: item.weightItem.weight, note: item.weightItem.note,);
+    },
+      fullscreenDialog: true,
+    ));
+
+    if(editItem != null){
+//      String _weightDiffence = _weightList.isNotEmpty ? (weightItem.weight - _weightList.last.weightItem.weight).toStringAsFixed(1) : '0';
+      WeightWidget editWeightWidget = WeightWidget (weightItem: editItem, difference: '0');
+      _weightList[_weightList.indexOf(item)] = editWeightWidget;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +63,13 @@ class _HomePageState extends State<HomePage> {
           itemCount: _weightList.length,
           itemBuilder: (BuildContext ctxt, int index) {
             return InkWell(
-//                onTap: () => _editEntry(_weightList[index]),
+                onTap: () => _editEntry(_weightList[index]),
                 child: _weightList[index]
             );
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-        _openAddEntryDialog();
+        _addNewEntry();
 
         },
         child: Icon(Icons.add),
