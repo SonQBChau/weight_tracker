@@ -26,6 +26,9 @@ dependencies:
   # This package provides internationalization and localization facilities, including message
   # translation, plurals and genders, date/number formatting and parsing, and bidirectional text.
   intl: ^0.15.8
+  # Flutter plugin picker. Include NumberPicker, DateTimePicker, ArrayPicker, and default linkage Picker.
+  flutter_picker:
+    git: git://github.com/yangyxd/flutter_picker.git
 
 dev_dependencies:
   flutter_test:
