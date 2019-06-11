@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:weight_tracker/models/weight_history.dart';
 import 'package:weight_tracker/screens/add_entry_dialog.dart';
 import 'package:weight_tracker/utils/random_generator.dart';
-import 'package:weight_tracker/widgets/WeightItem.dart';
+import 'package:weight_tracker/widgets/weight_item.dart';
 
 class HomePage extends StatefulWidget {
   @override
