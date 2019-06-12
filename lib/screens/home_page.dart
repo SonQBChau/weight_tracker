@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
           itemCount: _weightList.length,
           itemBuilder: (BuildContext ctxt, int index) {
             WeightItem item = _weightList[index];
+            // calculate the weight difference as populate the list
             String _weightDiffence = index > 0 ? (item.weight - _weightList[index-1].weight).toStringAsFixed(1) : '0.0';
             return InkWell(
                 onTap: () => _editEntry(item),
